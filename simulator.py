@@ -35,23 +35,39 @@ def plot_roll_frequency(results_list):
 #plot_roll_frequency(results_list)
 
 def come_out_roll():
+    print("Come out roll")
     result = roll_dice()
     return result
 
+def start_game(m, bets):
+    return m, bets
+
+def make_bet(bets, bet, amount):
+    bets[bet] = amount
+    return bets
 
 
+balance, bets = start_game(100, {'pass_line': 0})
 
-#initialize bets
-bet_pass_line = 10
+bets = make_bet(bets, 'pass_line', 10)
+
 result = come_out_roll()
 print(result)
 
 if result in [7,11]:
     print("You win!")
+    balance += bets['pass_line']
 elif result in [2,3,12]:
     print("You lose")
+    balance -= bets['pass_line']
+
 else:
     point = result
     print("Point is ", point)
 
+
+
+
+
+print("You have", balance)
 
