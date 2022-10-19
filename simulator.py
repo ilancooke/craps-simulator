@@ -64,7 +64,20 @@ elif result in [2,3,12]:
 else:
     point = result
     print("Point is ", point)
-
+    round_continue = True
+    while round_continue:
+        roll = roll_dice()
+        print("dice rolled", roll)
+        if roll == 7:
+            print("You lose")
+            balance -= bets['pass_line']
+            round_continue = False
+        elif roll == point:
+            print("You win")
+            balance += bets['pass_line']
+            round_continue = False
+        else:
+            continue
 
 
 
