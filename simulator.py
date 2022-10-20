@@ -35,8 +35,8 @@ def plot_roll_frequency(results_list):
 #plot_roll_frequency(results_list)
 
 def come_out_roll():
-    print("Come out roll")
     result = roll_dice()
+    print("Come out roll", result)
     return result
 
 def start_game(m, bets):
@@ -46,41 +46,46 @@ def make_bet(bets, bet, amount):
     bets[bet] = amount
     return bets
 
+def win(balance, bets, bet):
+    print("You win!")
+    balance += bets[bet]
+    return balance
 
+def lose(balance, bets, bet):
+    print("You lose!")
+    balance -= bets[bet]
+    return balance
 balance, bets = start_game(100, {'pass_line': 0})
 
-bets = make_bet(bets, 'pass_line', 10)
+for i in range(1,101):
+    print("Turn number", i)
+    bets = make_bet(bets, 'pass_line', 10)
 
-result = come_out_roll()
-print(result)
+    result = come_out_roll()
 
-if result in [7,11]:
-    print("You win!")
-    balance += bets['pass_line']
-elif result in [2,3,12]:
-    print("You lose")
-    balance -= bets['pass_line']
+    if result in [7,11]:
+        balance = win(balance, bets, 'pass_line')
+    elif result in [2,3,12]:
+        balance = lose(balance, bets, 'pass_line')
 
-else:
-    point = result
-    print("Point is ", point)
-    round_continue = True
-    while round_continue:
-        roll = roll_dice()
-        print("dice rolled", roll)
-        if roll == 7:
-            print("You lose")
-            balance -= bets['pass_line']
-            round_continue = False
-        elif roll == point:
-            print("You win")
-            balance += bets['pass_line']
-            round_continue = False
-        else:
-            continue
+    else:
+        point = result
+        print("Point is ", point)
+        round_continue = True
+        while round_continue:
+            roll = roll_dice()
+            print("dice rolled", roll)
+            if roll == 7:
+                balance = lose(balance, bets, 'pass_line')
+                round_continue = False
+            elif roll == point:
+                balance = win(balance, bets, 'pass_line')
+                round_continue = False
+            else:
+                continue
 
-
-
-
-print("You have", balance)
+    print("You have", balance)
+    print("")
+    if balance == 0:
+        break
 
