@@ -28,7 +28,8 @@ This Python program simulates the popular casino dice game of Craps. It allows u
     "initial_balance": 1000,
     "base_bet": 10,
     "max_rounds": 100,
-    "strategy": "constant"
+    "strategy": "constant",
+    "bet_type": "dont_pass_bar"
 }
 ```
 
@@ -44,6 +45,7 @@ python craps_game.py craps_config.json
 - base_bet: The base betting amount (in dollars)
 - max_rounds: The maximum number of rounds to play
 - strategy: The betting strategy to use (currently supports "constant" or "martingale")
+- bet_type: pass_line or dont_pass_bar
 
 ## Betting Strategies
 

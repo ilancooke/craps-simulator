@@ -1,6 +1,7 @@
 {
     "initial_balance": 1000,
     "base_bet": 10,
-    "max_rounds": 100,
-    "strategy": "constant"
+    "max_rounds": 1000,
+    "strategy": "constant",
+    "bet_type": "dont_pass_bar"
 }
