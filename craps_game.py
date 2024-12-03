@@ -70,7 +70,6 @@ class CrapsGame:
             return self.base_bet  # Default to constant betting
 
     def play_game(self):
-        self.losses = 0
         for round in range(1, self.max_rounds + 1):
             print(f"\nRound {round}")
             print(f"Current balance: ${self.balance}")
@@ -79,7 +78,6 @@ class CrapsGame:
             if self.balance <= 0:
                 print("You've run out of money. Game over.")
                 break
-            self.losses += 1
 
         print(f"\nGame over. Final balance: ${self.balance}")
 
